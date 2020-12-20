@@ -1,25 +1,27 @@
 #pragma once
 #include <iostream>
 
+#define AMOUNT_OF_COORD 4
+
 class Piece
 {
 public:
 
 	// Constructor
-	Piece(std::string type);
+	Piece(char type);
 
 	// Destructor
 	~Piece();
 
 	// Methods
-	virtual std::string moveTo(std::string coordinates) = 0;
+	virtual std::string moveTo(std::string coordinates) const;
 
 protected:
 
 	// Fields
-	std::string _type;
+	char _type;
 	
 	// Helper Methods
-	bool checkInvalidMove();
-	virtual bool isValidStep(int x, int y) = 0;
+	bool checkInvalidMove(std::string& coordinates) const;
+	// virtual bool isValidStep(std::string& coordinates) = 0;
 };

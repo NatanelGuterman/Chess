@@ -1,7 +1,7 @@
 #include "Pawn.h"
 
 // Constructor
-Pawn::Pawn(std::string type) : Piece(type)
+Pawn::Pawn(char type) : Piece(type)
 {
 }
 

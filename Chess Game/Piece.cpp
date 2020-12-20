@@ -1,7 +1,7 @@
 #include "Piece.h"
 
 // Constructor 
-Piece::Piece(std::string type) : _type(type)
+Piece::Piece(char type) : _type(type)
 {
 }
 // Destructor

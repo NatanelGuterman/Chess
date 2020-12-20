@@ -1,7 +1,7 @@
 #include "King.h"
 
 // Constructor
-King::King(std::string type) : Piece(type)
+King::King(char type) : Piece(type)
 {
 }
 

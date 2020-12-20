@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class Bishop
+class Bishop : public Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Bishop(std::string type);
+	Bishop(char type);
 
 	// Destructor
 	~Bishop();

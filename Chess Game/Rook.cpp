@@ -1,7 +1,7 @@
 #include "Rook.h"
 
 // Constructor
-Rook::Rook(std::string type) : Piece(type)
+Rook::Rook(char type) : Piece(type)
 {
 }
 

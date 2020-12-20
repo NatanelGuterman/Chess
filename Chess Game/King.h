@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class King : Piece
+class King : public Piece
 {
 private:
 	// Methods

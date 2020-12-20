@@ -1,7 +1,7 @@
 #include "Knight.h"
 
 // Constructor
-Knight::Knight(std::string type) : Piece(type)
+Knight::Knight(char type) : Piece(type)
 {
 }
 

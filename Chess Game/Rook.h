@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class Rook : Piece
+class Rook : public Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Rook(std::string type);
+	Rook(char type);
 
 	// Destructor
 	~Rook();

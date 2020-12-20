@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class Knight : Piece
+class Knight : public Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Knight(std::string type);
+	Knight(char type);
 
 	// Destructor
 	~Knight();

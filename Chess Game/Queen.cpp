@@ -1,7 +1,7 @@
 #include "Queen.h"
 
 // Constructor
-Queen::Queen(std::string type) : Piece(type)
+Queen::Queen(char type) : Piece(type)
 {
 }
 
