@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class King
+class King : Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	King();
+	King(std::string type);
 
 	// Destructor
 	~King();

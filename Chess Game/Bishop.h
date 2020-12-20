@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Bishop();
+	Bishop(std::string type);
 
 	// Destructor
 	~Bishop();

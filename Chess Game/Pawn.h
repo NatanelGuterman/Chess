@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class Pawn
+class Pawn : Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Pawn();
+	Pawn(std::string type);
 
 	// Destructor
 	~Pawn();

@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <string.h>
 
-class Queen
+class Queen : Piece
 {
 private:
 	// Methods
@@ -11,7 +11,7 @@ private:
 
 public:
 	// Constructor
-	Queen();
+	Queen(std::string type);
 
 	// Destructor
 	~Queen();
