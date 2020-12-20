@@ -6,7 +6,7 @@ class Piece
 public:
 
 	// Constructor
-	Piece();
+	Piece(std::string type);
 
 	// Destructor
 	~Piece();
