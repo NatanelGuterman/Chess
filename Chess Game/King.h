@@ -1,6 +1,5 @@
 #pragma once
 #include "Piece.h"
-#include <string.h>
 
 class King : public Piece
 {
@@ -11,7 +10,7 @@ private:
 
 public:
 	// Constructor
-	King(std::string type);
+	King(char type);
 
 	// Destructor
 	~King();
