@@ -38,4 +38,15 @@ Board::Board()
 // Destructor
 Board::~Board()
 {
+	int i = 0, j = 0;
+
+	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
+	{
+		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
+		{
+			delete this->_chessBoard[i][j];
+		}
+	}
+
+	delete this->_chessBoard;
 }
