@@ -5,8 +5,7 @@ class King : public Piece
 {
 private:
 	// Methods
-	bool checkInvalidMove();
-	bool isValidStep(int x, int y);
+	virtual bool isValidStep(std::string& coordinates);
 
 public:
 	// Constructor
@@ -14,7 +13,4 @@ public:
 
 	// Destructor
 	~King();
-
-	// Helper Methods
-	std::string moveTo(std::string coordinates);
 };
