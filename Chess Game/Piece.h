@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
+#include "Board.h"
 
 #define AMOUNT_OF_COORD 4
+#define NULL_CHAR '#'
 
-class Piece
+class Piece : public Board
 {
 
 protected:
@@ -12,7 +14,7 @@ protected:
 	char _type;
 
 	// Helper Methods
-	bool checkInvalidMove(std::string& coordinates) const;
+	std::string checkInvalidMove(std::string& coordinates) const;
 	virtual bool isValidStep(std::string& coordinates) = 0;
 
 public:
