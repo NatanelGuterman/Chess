@@ -3,8 +3,14 @@
 #include "Board.cpp"
 
 #define AMOUNT_OF_COORD 4
+
 #define MAX_BOARD_INDEX 7
 #define MIN_BOARD_INDEX 0
+
+#define X_CURRENT 0
+#define Y_CURRENT 0
+#define X_TARGET 0
+#define Y_TARGET 0
 
 class Piece
 {
