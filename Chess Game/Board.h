@@ -58,11 +58,10 @@ public:
 	// Destructor
 	~Board();
 
-	//static function
-	 char getTypeByCoord(int x, int y);
+	static char getTypeByCoord(int x, int y);
 
 protected:
 
 	// Fields
-	Piece* _chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS];
+	static Piece* _chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS];
 };

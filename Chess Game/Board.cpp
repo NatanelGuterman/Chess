@@ -51,7 +51,16 @@ Board::~Board()
 	delete this->_chessBoard;
 }
 
+/*
+	Function will get a x and y coordinates and return the piece type in the given coordinates
+	Input:
+		int x - the x place
+		int y - the y place
+	Output:
+		char - the type in the given coordinates (b, r, R, k....)
+*/
+
 char Board::getTypeByCoord(int x, int y)
 {
-	return this->_chessBoard[x][y]->get_type();
+	return Board::_chessBoard[x][y]->get_type();
 }
