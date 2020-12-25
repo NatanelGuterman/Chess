@@ -52,12 +52,12 @@ Board::~Board()
 }
 
 /*
-	Function will get a x and y coordinates and return the piece type in the given coordinates
+	Function will get a x and y coordinates and return the piece type in the given coordinates.
 	Input:
-		int x - the x place
-		int y - the y place
+		int x --> the x place.
+		int y --> the y place.
 	Output:
-		char - the type in the given coordinates (b, r, R, k....)
+		char --> the type in the given coordinates (b, r, R, k....).
 */
 
 char Board::getTypeByCoord(int x, int y)
