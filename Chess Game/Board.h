@@ -59,7 +59,7 @@ public:
 	~Board();
 
 	//static function
-	 std::string getTypeByCoord(int x, int y);
+	 char getTypeByCoord(int x, int y);
 
 protected:
 

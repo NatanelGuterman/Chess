@@ -51,7 +51,7 @@ Board::~Board()
 	delete this->_chessBoard;
 }
 
-std::string Board::getTypeByCoord(int x, int y)
+char Board::getTypeByCoord(int x, int y)
 {
-	return this->_chessBoard[x][y]
+	return this->_chessBoard[x][y]->get_type();
 }
