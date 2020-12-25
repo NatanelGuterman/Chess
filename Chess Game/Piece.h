@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
-#include "Board.h"
+#include "Board.cpp"
 
 #define AMOUNT_OF_COORD 4
-#define NULL_CHAR '#'
+#define MAX_BOARD_INDEX 7
+#define MIN_BOARD_INDEX 0
 
-class Piece : public Board
+class Piece
 {
 
 protected:
@@ -15,7 +16,7 @@ protected:
 
 	// Helper Methods
 	std::string checkInvalidMove(std::string& coordinates) const;
-	virtual bool isValidStep(std::string& coordinates) = 0;
+	virtual bool isValidStep(std::string& coordinates) = 0; // true = valid, false = invalid.
 
 public:
 
