@@ -5,7 +5,7 @@ class King : public Piece
 {
 private:
 	// Methods
-	virtual bool isValidStep(std::string& coordinates);
+	virtual bool isValidStep(int(&coordinates)[4]);
 
 public:
 	// Constructor
