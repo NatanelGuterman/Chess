@@ -25,6 +25,9 @@ public:
 	// Destructor
 	~Piece();
 
+	// Getters
+	char get_type();
+
 	// Methods
 	virtual std::string moveTo(std::string coordinates) const;
 };
