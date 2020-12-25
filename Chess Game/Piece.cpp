@@ -15,15 +15,9 @@ char Piece::get_type()
 	return this->_type;
 }
 
-std::string Piece::checkInvalidMove(std::string& coordinates) const
+std::string Piece::checkInvalidMove(int(&coordinates)[4]) const
 {
 	std::string code = "0";
-	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-
-	x1 = int(coordinates[0]) - 1;
-	y1 = int(coordinates[1]) - 1;
-	x2 = int(coordinates[2]) - 1;
-	y2 = int(coordinates[3]) - 1;
 
 	// Code 2 in moveTo() func.
 
@@ -35,8 +29,8 @@ std::string Piece::checkInvalidMove(std::string& coordinates) const
 	{
 		code = "4";
 	}
-	else if (x1 < MIN_BOARD_INDEX || x1 > MAX_BOARD_INDEX || y1 < MIN_BOARD_INDEX || y1 > MAX_BOARD_INDEX ||
-			 x2 < MIN_BOARD_INDEX || x2 > MAX_BOARD_INDEX || y2 < MIN_BOARD_INDEX || y2 > MAX_BOARD_INDEX) // Code 5
+	else if (coordinates[0] < MIN_BOARD_INDEX || coordinates[0] > MAX_BOARD_INDEX || coordinates[1] < MIN_BOARD_INDEX || coordinates[1] > MAX_BOARD_INDEX ||
+			 coordinates[2] < MIN_BOARD_INDEX || coordinates[2] > MAX_BOARD_INDEX || coordinates[3] < MIN_BOARD_INDEX || coordinates[3] > MAX_BOARD_INDEX) // Code 5
 	{
 		code = "5";
 	}
@@ -46,7 +40,7 @@ std::string Piece::checkInvalidMove(std::string& coordinates) const
 		code = "6";
 	}
 	/***********************************************************************************************************/
-	else if (x1 == x2 && y1 == y2)
+	else if (coordinates[0] == coordinates[2] && coordinates[1] == coordinates[3])
 	{
 		code = "7";
 	}
@@ -54,14 +48,14 @@ std::string Piece::checkInvalidMove(std::string& coordinates) const
 	return code;
 }
 
-std::string Piece::moveTo(std::string coordinates) const
+std::string Piece::moveTo(std::string coordinatesStr) const
 {
-
+	int coordinates[4] = { (int(coordinatesStr[0]) - 1) , (int(coordinatesStr[1]) - 1) , (int(coordinatesStr[2]) - 1) , (int(coordinatesStr[3]) - 1) };
 	std::string code = checkInvalidMove(coordinates);
 	char type = 'a';
 	if (code == "0")
 	{
-		type = Board::getTypeByCoord((int(coordinates[2]) - 1), (int(coordinates[3]) - 1));
+		type = Board::getTypeByCoord(coordinates[2], coordinates[3]);
 		if (BLACK_KING == type || WHITE_KING == type) // Code 8
 		{
 			code = "8";

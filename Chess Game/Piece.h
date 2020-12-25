@@ -15,8 +15,8 @@ protected:
 	char _type;
 
 	// Helper Methods
-	std::string checkInvalidMove(std::string& coordinates) const;
-	virtual bool isValidStep(std::string& coordinates) = 0; // true = valid, false = invalid.
+	std::string checkInvalidMove(int (&coordinates)[4]) const;
+	virtual bool isValidStep(int(&coordinates)[4]) = 0; // true = valid, false = invalid.
 
 public:
 
