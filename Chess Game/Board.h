@@ -58,6 +58,9 @@ public:
 	// Destructor
 	~Board();
 
+	//static function
+	static std::string getTypeByCoord(int x, int y);
+
 protected:
 
 	// Fields
