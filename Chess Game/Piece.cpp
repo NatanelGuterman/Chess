@@ -15,7 +15,7 @@ char Piece::get_type()
 	return this->_type;
 }
 
-std::string Piece::checkInvalidMove(int(&coordinates)[4]) const
+std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	std::string code = "0";
 
@@ -29,10 +29,16 @@ std::string Piece::checkInvalidMove(int(&coordinates)[4]) const
 	{
 		code = "4";
 	}
-	else if (coordinates[0] < MIN_BOARD_INDEX || coordinates[0] > MAX_BOARD_INDEX || coordinates[1] < MIN_BOARD_INDEX || coordinates[1] > MAX_BOARD_INDEX ||
-			 coordinates[2] < MIN_BOARD_INDEX || coordinates[2] > MAX_BOARD_INDEX || coordinates[3] < MIN_BOARD_INDEX || coordinates[3] > MAX_BOARD_INDEX) // Code 5
+	else if (coordinates[X_CURRENT] < MIN_BOARD_INDEX || coordinates[X_CURRENT] > MAX_BOARD_INDEX ||
+			 coordinates[Y_CURRENT] < MIN_BOARD_INDEX || coordinates[Y_CURRENT] > MAX_BOARD_INDEX ||
+			 coordinates[X_TARGET] < MIN_BOARD_INDEX || coordinates[X_TARGET] > MAX_BOARD_INDEX ||
+			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX) // Code 5
 	{
 		code = "5";
+	}
+	else if (coordinates[X_CURRENT] == coordinates[X_TARGET] && coordinates[Y_CURRENT] == coordinates[Y_TARGET])
+	{
+		code = "7";
 	}
 	/***********************************************************************************************************/
 	else if (!isValidStep(coordinates)) // Code 6 - write virtual func!
@@ -40,22 +46,21 @@ std::string Piece::checkInvalidMove(int(&coordinates)[4]) const
 		code = "6";
 	}
 	/***********************************************************************************************************/
-	else if (coordinates[0] == coordinates[2] && coordinates[1] == coordinates[3])
-	{
-		code = "7";
-	}
-	
+
 	return code;
 }
 
 std::string Piece::moveTo(std::string coordinatesStr) const
 {
-	int coordinates[4] = { (int(coordinatesStr[0]) - 1) , (int(coordinatesStr[1]) - 1) , (int(coordinatesStr[2]) - 1) , (int(coordinatesStr[3]) - 1) };
+	int coordinates[AMOUNT_OF_COORD] = { (int(coordinatesStr[X_CURRENT]) - 1) ,
+										 (int(coordinatesStr[Y_CURRENT]) - 1) ,
+										 (int(coordinatesStr[X_TARGET]) - 1) ,
+										 (int(coordinatesStr[Y_TARGET]) - 1) };
 	std::string code = checkInvalidMove(coordinates);
 	char type = 'a';
 	if (code == "0")
 	{
-		type = Board::getTypeByCoord(coordinates[2], coordinates[3]);
+		type = Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]);
 		if (BLACK_KING == type || WHITE_KING == type) // Code 8
 		{
 			code = "8";
