@@ -22,7 +22,7 @@ protected:
 
 	// Helper Methods
 	std::string checkInvalidMove(int (&coordinates)[4]) const;
-	virtual bool isValidStep(int(&coordinates)[4]) = 0; // true = valid, false = invalid.
+	virtual bool isValidStep(int(&coordinates)[4]) const  = 0; // true = valid, false = invalid.
 
 public:
 
