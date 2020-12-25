@@ -19,16 +19,22 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	std::string code = "0";
 
-	// Code 2 in moveTo() func.
+	// Code 2 in Board class func.
 
-	if (false) // Code 3
+	if ((islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) &&
+		 islower(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) || 
+		(isupper(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) &&
+		 isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Code 3
 	{
 		code = "3";
 	}
+	/***********************************************************************************************/
 	else if (false) // Code 4
 	{
 		code = "4";
 	}
+	/***********************************ADD שח FUNCTION*********************************************/
+	/***********************************************************************************************/
 	else if (coordinates[X_CURRENT] < MIN_BOARD_INDEX || coordinates[X_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[Y_CURRENT] < MIN_BOARD_INDEX || coordinates[Y_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[X_TARGET] < MIN_BOARD_INDEX || coordinates[X_TARGET] > MAX_BOARD_INDEX ||
@@ -40,15 +46,14 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	{
 		code = "7";
 	}
-	/***********************************************************************************************************/
-	else if (!isValidStep(coordinates)) // Code 6 - write virtual func!
+	else if (!isValidStep(coordinates)) // Code 6 - virtual func
 	{
 		code = "6";
 	}
-	/***********************************************************************************************************/
 
 	return code;
 }
+
 
 std::string Piece::moveTo(std::string coordinatesStr) const
 {

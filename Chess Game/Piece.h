@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <ctype.h>
 #include "Board.cpp"
 
 #define AMOUNT_OF_COORD 4
@@ -21,7 +22,7 @@ protected:
 	char _type;
 
 	// Helper Methods
-	std::string checkInvalidMove(int (&coordinates)[4]) const;
+	std::string checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const;
 	virtual bool isValidStep(int(&coordinates)[4]) const  = 0; // true = valid, false = invalid.
 
 public:
