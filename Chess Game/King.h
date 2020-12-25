@@ -1,6 +1,8 @@
 #pragma once
 #include "Piece.h"
 
+#define MAN_DIS_MOVE 1
+
 class King : public Piece
 {
 private:
