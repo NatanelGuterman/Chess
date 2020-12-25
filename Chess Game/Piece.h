@@ -8,9 +8,9 @@
 #define MIN_BOARD_INDEX 0
 
 #define X_CURRENT 0
-#define Y_CURRENT 0
-#define X_TARGET 0
-#define Y_TARGET 0
+#define Y_CURRENT 1
+#define X_TARGET 2
+#define Y_TARGET 3
 
 class Piece
 {
