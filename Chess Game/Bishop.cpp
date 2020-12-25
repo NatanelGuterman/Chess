@@ -18,7 +18,7 @@ Bishop::~Bishop()
         bool flag --> true if the move is valid, false if not.
 */
 
-bool Bishop::isValidStep(int(&coordinates)[4])
+bool Bishop::isValidStep(int(&coordinates)[4]) const
 {
 	bool flag = false;
     if (coordinates[X_CURRENT] - coordinates[X_TARGET] == coordinates[Y_CURRENT] - coordinates[Y_TARGET])

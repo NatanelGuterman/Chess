@@ -18,7 +18,7 @@ Queen::~Queen()
         bool flag --> true if the move is valid, false if not.
 */
 
-bool Queen::isValidStep(int(&coordinates)[4])
+bool Queen::isValidStep(int(&coordinates)[4]) const
 {
     bool flag = false;
     if (!(coordinates[X_CURRENT] != coordinates[X_TARGET] && coordinates[Y_CURRENT] != coordinates[Y_TARGET]) ||

@@ -18,7 +18,7 @@ Rook::~Rook()
         bool flag --> true if the move is valid, false if not.
 */
 
-bool Rook::isValidStep(int(&coordinates)[4])
+bool Rook::isValidStep(int(&coordinates)[4]) const
 {
     bool flag = true;
     if (coordinates[X_CURRENT] != coordinates[X_TARGET] && coordinates[Y_CURRENT] != coordinates[Y_TARGET])
