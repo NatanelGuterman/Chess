@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+//#include <iostream>
 #include <ctype.h>
 #include "Board.h"
 
@@ -13,7 +13,7 @@
 
 #define AMOUNT_OF_COORD 4
 
-//class Board;
+class Board;
 
 class Piece
 {
@@ -25,7 +25,7 @@ protected:
 
 	// Helper Methods
 	std::string checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const;
-	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const  = 0; // true = valid, false = invalid.
+	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD])const  = 0; // true = valid, false = invalid.
 
 public:
 

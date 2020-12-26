@@ -40,7 +40,7 @@ int main()
 	}
 
 	char msgToGraphics[1024];
-	// msgToGraphics should contain the board string accord the protocol
+	 //msgToGraphics should contain the board string accord the protocol
 	Board* gameBoard = new Board();
 
 	// YOUR CODE
