@@ -13,7 +13,7 @@
 
 #define AMOUNT_OF_COORD 4
 
-class Board;
+//class Board;
 
 class Piece
 {

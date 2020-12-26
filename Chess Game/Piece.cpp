@@ -97,6 +97,7 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 			return "1";
 		}
 		/***********************************************************************************************/
+		Board::moveTo(coordinates);
 	}
 	return "0";
 }

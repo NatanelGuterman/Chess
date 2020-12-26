@@ -38,7 +38,7 @@ Board::Board()
 	this->_chessBoard[LINE_EIGHT][COL_SIX] = new Bishop(WHITE_BISHOP);
 	this->_chessBoard[LINE_EIGHT][COL_SEVEN] = new Knight(WHITE_KNIGHT);
 	this->_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(WHITE_ROOK);
-	Board::_turn = false; // White's turn first.
+	this->_turn = false; // White's turn first.
 }
 
 // Destructor
@@ -54,7 +54,7 @@ Board::~Board()
 		}
 	}
 
-	//delete Board::_chessBoard;
+	//delete Board::_chessBoard; --> We couldn't find a way do delete this..
 }
 
 /*
@@ -88,6 +88,7 @@ void Board::moveTo(int(&coordinates)[AMOUNT_OF_COORD])
 	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = nullptr;
 	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]];
 	Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]] = nullptr;
+	Board::_turn = !Board::_turn;
 }
 
 // Getters
