@@ -4,6 +4,7 @@
 Piece::Piece(char type) : _type(type)
 {
 }
+
 // Destructor
 Piece::~Piece()
 {
@@ -93,12 +94,10 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 			return "8";
 		}
 		// Code 1
-		/***********************************************************************************************/
-		else if (isKingInCheck()) // Call to nooni's function to check שח
+		else if (isKingInCheck())
 		{
 			return "1";
 		}
-		/***********************************************************************************************/
 		Board::moveTo(coordinates);
 	}
 	return "0";
@@ -129,7 +128,7 @@ bool Piece::isKingInCheck() const
 	{
 		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
 		{
-			if (Board::_chessBoard[i][j] != nullptr && islower(Board::_chessBoard[i][j]->_type) != negativePieceColor)
+			if (Board::_chessBoard[i][j] != nullptr && bool(islower(Board::_chessBoard[i][j]->_type)) != negativePieceColor)
 			{
 				coordinates[X_CURRENT] = i;
 				coordinates[Y_CURRENT] = j;
