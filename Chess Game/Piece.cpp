@@ -16,11 +16,11 @@ char Piece::get_type()
 }
 
 /*
-	Function will
+	Function will check if the move is invalid (codes 2, 3, 4, 5, 6 and 7).
 	Input:
-		std::string coordinatesStr -->
+		int(&coordinates)[AMOUNT_OF_COORD] --> The current && targen coordinates.
 	Output:
-		std::string -->
+		std::string --> The code by the issue. "0" if there's no issue.
 */
 
 std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
@@ -60,14 +60,14 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 }
 
 /*
-	Function will 
+	Function will check ALL CODES before the move is made (calls to checkInvalidMove and checks codes 0, 1 and 8).
 	Input:
-		std::string coordinatesStr --> 
+		std::string &coordinatesStr --> The coordinates from the front.
 	Output:
-		std::string --> 
+		std::string --> The code - the piece at the current (x, y) can move to the target (x, y) or not.
 */
 
-std::string Piece::moveTo(std::string coordinatesStr) const
+std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 {
 	char type = 'a';
 	int coordinates[AMOUNT_OF_COORD] = { (int(coordinatesStr[X_CURRENT]) - 1) ,

@@ -3,8 +3,6 @@
 #include <ctype.h>
 #include "Board.cpp"
 
-#define AMOUNT_OF_COORD 4
-
 #define MAX_BOARD_INDEX 7
 #define MIN_BOARD_INDEX 0
 
@@ -23,7 +21,7 @@ protected:
 
 	// Helper Methods
 	std::string checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const;
-	virtual bool isValidStep(int(&coordinates)[4]) const  = 0; // true = valid, false = invalid.
+	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const  = 0; // true = valid, false = invalid.
 
 public:
 
@@ -37,5 +35,5 @@ public:
 	char get_type();
 
 	// Methods
-	virtual std::string moveTo(std::string coordinates) const;
+	virtual std::string checkCodeToMove(std::string &coordinates) const;
 };
