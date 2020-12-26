@@ -69,9 +69,10 @@ public:
 	// Setters
 	static void set_turn(bool turn);
 
-private:
-
+public: 
 	// Fields
 	static Piece* _chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS];
+
+private:
 	static bool _turn;
 };
