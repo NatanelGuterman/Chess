@@ -31,6 +31,7 @@ Board::Board()
 	this->_chessBoard[LINE_EIGHT][COL_SIX] = new Bishop(WHITE_BISHOP);
 	this->_chessBoard[LINE_EIGHT][COL_SEVEN] = new Knight(WHITE_KNIGHT);
 	this->_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(WHITE_ROOK);
+	Board::_turn = false; // White's turn first.
 }
 
 // Destructor
@@ -60,7 +61,11 @@ Board::~Board()
 
 char Board::getTypeByCoord(int x, int y)
 {
-	return Board::_chessBoard[x][y]->get_type();
+	if (Board::_chessBoard[x][y])
+	{
+		return Board::_chessBoard[x][y]->get_type();
+	}
+	return NULL_CHAR;
 }
 
 /*
