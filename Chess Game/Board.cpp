@@ -1,10 +1,11 @@
 #include "Board.h"
-#include "Rook.h"
-#include "King.h"
-#include "Queen.h"
 #include "Bishop.h"
+#include "King.h"
 #include "Knight.h"
 #include "Pawn.h"
+#include "Rook.h"
+#include "Queen.h"
+
 
 // Constructor
 Board::Board()
