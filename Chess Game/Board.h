@@ -43,7 +43,7 @@
 
 #define AMOUNT_OF_COORD 4
 
-//class Piece;
+class Piece;
 class Board
 {
 public:
