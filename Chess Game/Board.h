@@ -43,12 +43,10 @@
 
 #define AMOUNT_OF_COORD 4
 
-class Piece;
-
+//class Piece;
 class Board
 {
 public:
-
 	// Constructor
 	Board();
 
@@ -64,7 +62,6 @@ public:
 	// Setters
 	static void set_turn(bool turn);
 
-public: 
 	// Fields
 	static Piece* _chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS];
 
