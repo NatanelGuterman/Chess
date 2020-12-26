@@ -26,8 +26,8 @@ char Piece::get_type()
 std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	// Code 2 in main, and part of it here.
-	if (!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) || // false (white's turn) and lower case type of piece (black in current coordinates).
-		 Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) // true (black's turn) and upper case type of piece (white in current coordinates).
+	if ((!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT]))) || // false (white's turn) and lower case type of piece (black in current coordinates).
+		 (Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // true (black's turn) and upper case type of piece (white in current coordinates).
 	{
 		return "2";
 	}
