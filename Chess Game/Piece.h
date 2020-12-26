@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <ctype.h>
-#include "Board.cpp"
+#include "Board.h"
 
 #define MAX_BOARD_INDEX 7
 #define MIN_BOARD_INDEX 0
@@ -10,6 +10,10 @@
 #define Y_CURRENT 1
 #define X_TARGET 2
 #define Y_TARGET 3
+
+#define AMOUNT_OF_COORD 4
+
+class Board;
 
 class Piece
 {
@@ -35,5 +39,5 @@ public:
 	char get_type();
 
 	// Methods
-	virtual std::string checkCodeToMove(std::string &coordinates) const;
+	std::string checkCodeToMove(std::string &coordinates) const;
 };

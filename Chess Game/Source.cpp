@@ -14,7 +14,7 @@ in order to read and write information from and to the Backend
 
 #define CONVERT_CHAR_TO_NUM 48
 
-void main()
+int main()
 {
 	Pipe p;
 	bool isConnect = p.connect();
@@ -35,7 +35,7 @@ void main()
 		else 
 		{
 			p.close();
-			return;
+			return 0;
 		}
 	}
 
@@ -76,4 +76,6 @@ void main()
 	}
 	p.close();
 	delete gameBoard;
+
+	return 0;
 }

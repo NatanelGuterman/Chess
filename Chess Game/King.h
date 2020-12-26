@@ -3,7 +3,7 @@
 
 #define MIN_DISTANSE_MOVE 1
 
-class King : public Piece
+class King : public Piece 
 {
 private:
     // Methods

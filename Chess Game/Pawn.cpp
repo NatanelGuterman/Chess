@@ -18,7 +18,7 @@ Pawn::~Pawn()
 		bool --> true if the pawn instance van move to the target coords, else false.
 */
 
-bool Pawn::isValidStep(int(&coordinates)[AMOUNT_OF_COORD])
+bool Pawn::isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	int diffTargetDis = 0;
 	diffTargetDis = Board::get_turn() ? -1 : 1; //-1 - Black, 1 - White

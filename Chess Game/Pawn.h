@@ -5,7 +5,7 @@ class Pawn : public Piece
 {
 private:
 	// Methods
-	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD]);
+	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const;
 
 public:
 	// Constructor

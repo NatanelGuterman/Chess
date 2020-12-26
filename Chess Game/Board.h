@@ -1,12 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Piece.h"
-#include "Rook.h"
-#include "King.h"
-#include "Queen.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Pawn.h"
 
 #define WIDTH_BOARD_BLOCKS 8
 #define HEIGHT_BOARD_BLOCKS 8
@@ -49,6 +43,7 @@
 
 #define AMOUNT_OF_COORD 4
 
+class Piece;
 
 class Board
 {

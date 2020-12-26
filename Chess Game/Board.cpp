@@ -1,4 +1,10 @@
 #include "Board.h"
+#include "Rook.h"
+#include "King.h"
+#include "Queen.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
 
 // Constructor
 Board::Board()
@@ -47,7 +53,7 @@ Board::~Board()
 		}
 	}
 
-	delete Board::_chessBoard;
+	//delete Board::_chessBoard;
 }
 
 /*
