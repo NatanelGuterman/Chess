@@ -25,38 +25,45 @@ char Piece::get_type()
 
 std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
-	// Code 2 in Board class func, and part of it here (NEED TO ADD).
-	if ((islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) &&
-		 islower(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) || 
-		(isupper(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) &&
-		 isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Code 3
+	// Code 2 in main, and part of it here.
+	if (!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])) || // false (white's turn) and lower case type of piece (black in current coordinates).
+		 Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) // true (black's turn) and upper case type of piece (white in current coordinates).
+	{
+		return "2";
+	}
+	// Code 3
+	if ((Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) || // Current & target are both black.
+		(!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Current & target are both white.
 	{
 		return "3";
 	}
+	// Code 4
 	/***********************************************************************************************/
-	if (false) // Code 4
+	if (false) 
 	{
 		return "4";
 	}
 	/***********************************ADD שח FUNCTION*********************************************/
-	/***********************************************************************************************/
+	 // Code 5
 	if (coordinates[X_CURRENT] < MIN_BOARD_INDEX || coordinates[X_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[Y_CURRENT] < MIN_BOARD_INDEX || coordinates[Y_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[X_TARGET] < MIN_BOARD_INDEX || coordinates[X_TARGET] > MAX_BOARD_INDEX ||
-			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX) // Code 5
+			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX)
 	{
 		return "5";
 	}
+	// Code 7
 	if (coordinates[X_CURRENT] == coordinates[X_TARGET] && coordinates[Y_CURRENT] == coordinates[Y_TARGET])
-	{
+	{ // Current && target coordinates are the same.
 		return "7";
 	}
-	if (!isValidStep(coordinates)) // Code 6 - virtual func
+	// Code 6
+	if (!isValidStep(coordinates))
 	{
 		return "6";
 	}
 
-	return "0";
+	return "0"; // No issue was found.
 }
 
 /*
@@ -78,14 +85,18 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 	if (checkInvalidMove(coordinates) == "0")
 	{
 		type = Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]);
-		if (BLACK_KING == type || WHITE_KING == type) // Code 8
+		// Code 8
+		if (BLACK_KING == type || WHITE_KING == type)
 		{
 			return "8";
 		}
+		// Code 1
+		/***********************************************************************************************/
 		else if (false) // Call to nooni's function to check שח
-		{ // Code 1
+		{
 			return "1";
 		}
+		/***********************************************************************************************/
 	}
 	return "0";
 }
