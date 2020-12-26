@@ -47,6 +47,8 @@
 #define COL_SEVEN 6
 #define COL_EIGHT 7
 
+#define AMOUNT_OF_COORD 4
+
 
 class Board
 {
@@ -59,6 +61,7 @@ public:
 	~Board();
 
 	static char getTypeByCoord(int x, int y);
+	static void moveTo(int(&coordinates)[AMOUNT_OF_COORD]);
 
 protected:
 

@@ -31,8 +31,6 @@ Board::Board()
 	this->_chessBoard[LINE_EIGHT][COL_SIX] = new Bishop(WHITE_BISHOP);
 	this->_chessBoard[LINE_EIGHT][COL_SEVEN] = new Knight(WHITE_KNIGHT);
 	this->_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(WHITE_ROOK);
-
-
 }
 
 // Destructor
@@ -44,11 +42,11 @@ Board::~Board()
 	{
 		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
 		{
-			delete this->_chessBoard[i][j];
+			delete Board::_chessBoard[i][j];
 		}
 	}
 
-	delete this->_chessBoard;
+	delete Board::_chessBoard;
 }
 
 /*
@@ -63,4 +61,19 @@ Board::~Board()
 char Board::getTypeByCoord(int x, int y)
 {
 	return Board::_chessBoard[x][y]->get_type();
+}
+
+/*
+	Function will get a x and y coordinates and move the piece to the given coordinates.
+	Input:
+		int(&coordinates)[AMOUNT_OF_COORD] --> The current && target coordinates.
+	Output:
+		None.
+*/
+
+void Board::moveTo(int(&coordinates)[AMOUNT_OF_COORD])
+{
+	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = nullptr;
+	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]];
+	Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]] = nullptr;
 }
