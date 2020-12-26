@@ -84,7 +84,7 @@ void Board::moveTo(int(&coordinates)[AMOUNT_OF_COORD])
 }
 
 // Getters
-bool Board::get_turn() const
+bool Board::get_turn()
 {
 	return Board::_turn;
 }
