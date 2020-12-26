@@ -63,8 +63,15 @@ public:
 	static char getTypeByCoord(int x, int y);
 	static void moveTo(int(&coordinates)[AMOUNT_OF_COORD]);
 
+	// Getters
+	static bool get_turn();
+
+	// Setters
+	static void set_turn(bool turn);
+
 protected:
 
 	// Fields
 	static Piece* _chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS];
+	static bool _turn;
 };

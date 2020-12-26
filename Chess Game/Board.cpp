@@ -77,3 +77,15 @@ void Board::moveTo(int(&coordinates)[AMOUNT_OF_COORD])
 	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]];
 	Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]] = nullptr;
 }
+
+// Getters
+bool Board::get_turn()
+{
+	return Board::_turn;
+}
+
+// Setters
+void Board::set_turn(bool turn)
+{
+	Board::_turn = turn;
+}
