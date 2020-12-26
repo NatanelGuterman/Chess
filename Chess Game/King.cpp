@@ -12,6 +12,7 @@ King::~King()
 }
 
 /*
+<<<<<<< HEAD
     Function will check if the king instance can move to the given target coordinates.
     Input:
         int(&coordinates)[4] --> the array coords, [x1, y1, x2 (t) , y2 (t)]/
@@ -28,3 +29,4 @@ bool King::isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const
     }
     return false;
 }
+

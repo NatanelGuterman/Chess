@@ -5,7 +5,7 @@ class Bishop : public Piece
 {
 private:
 	// Methods
-	virtual bool isValidStep(int(&coordinates)[4]) const;
+	virtual bool isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const;
 
 public:
 	// Constructor
