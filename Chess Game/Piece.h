@@ -40,4 +40,8 @@ public:
 
 	// Methods
 	std::string checkCodeToMove(std::string &coordinates) const;
+	bool isKingInCheck() const;
+
+private:
+	std::string findCoordByType(char type) const;
 };

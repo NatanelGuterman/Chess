@@ -33,14 +33,16 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	}
 	// Code 3
 	if ((Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) || // Current & target are both black.
-		(!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Current & target are both white.
+	   (!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Current & target are both white.
 	{
 		return "3";
 	}
 	// Code 4
 	/***********************************************************************************************/
-	if (false) 
+	Board::set_turn(!Board::get_turn()); // To check this player's check.
+	if (isKingInCheck())
 	{
+		Board::set_turn(!Board::get_turn());  // Set back the actual player.
 		return "4";
 	}
 	/***********************************ADD שח FUNCTION*********************************************/
@@ -92,7 +94,7 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 		}
 		// Code 1
 		/***********************************************************************************************/
-		else if (false) // Call to nooni's function to check שח
+		else if (isKingInCheck()) // Call to nooni's function to check שח
 		{
 			return "1";
 		}
@@ -100,4 +102,73 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 		Board::moveTo(coordinates);
 	}
 	return "0";
+}
+
+/*
+	Function will check if the king is in check.
+	Black's turn = Check white king.
+	White's turn = Check black king.
+	Input:
+		None.
+	Output:
+		bool --> true if the king is in check, false if not.
+*/
+
+bool Piece::isKingInCheck() const
+{
+	int i = 0, j = 0;
+	int coordinates[4] = { 0, 0, 0, 0 };
+	char whichKing = Board::get_turn() ? WHITE_KING : BLACK_KING; // true (black's turn) = white, false (white's turn) = black.
+	bool negativePieceColor = islower(whichKing);
+	std::string resultCoordinates = findCoordByType(whichKing);
+	
+	coordinates[X_TARGET] = int(resultCoordinates[X_CURRENT]);
+	coordinates[Y_TARGET] = int(resultCoordinates[Y_CURRENT]);
+
+	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
+	{
+		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
+		{
+			if (Board::_chessBoard[i][j] != nullptr && islower(Board::_chessBoard[i][j]->_type) != negativePieceColor)
+			{
+				coordinates[X_CURRENT] = i;
+				coordinates[Y_CURRENT] = j;
+				if (isValidStep(coordinates)) // Found Chess!!!!!!
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false; // Didn't find chess.
+}
+
+/*
+	Function will find the coordinates of a given piece type.
+	Input:
+		char type --> The type of the piece to find.
+	Output:
+		std::string coordinates --> The coordinates (x, y).
+*/
+
+std::string Piece::findCoordByType(char type) const
+{
+	int i = 0, j = 0;
+	std::string coordinates = "";
+	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
+	{
+		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
+		{
+			if (Board::_chessBoard[i][j] != nullptr)
+			{
+				if (Board::_chessBoard[i][j]->_type == type)
+				{
+					coordinates += i;
+					coordinates += j;
+					return coordinates;
+				}
+			}
+		}
+	}
+	return coordinates; // Shouldn't be here. the func needs to find the piece and return during the process!
 }
