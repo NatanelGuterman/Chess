@@ -24,15 +24,14 @@ bool Pawn::isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const
 	diffTargetDis = Board::get_turn() ? -1 : 1; //-1 - Black, 1 - White
 	if (Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]) != NULL_CHAR) //if piece exist only diagon
 	{
-		if (abs(coordinates[X_CURRENT] - coordinates[X_TARGET]) == abs(coordinates[Y_CURRENT] - coordinates[Y_TARGET]) && coordinates[Y_CURRENT] - coordinates[Y_TARGET] == diffTargetDis) //
+		if (abs(coordinates[X_CURRENT] - coordinates[X_TARGET]) == abs(coordinates[Y_CURRENT] - coordinates[Y_TARGET]) && coordinates[Y_CURRENT] - coordinates[Y_TARGET] != diffTargetDis) //
 		{
 			return true;
 		}
 	}
 	else
 	{
-
-		if ((diffTargetDis < 0 && coordinates[Y_CURRENT] == 1 || diffTargetDis > 0 && coordinates[Y_CURRENT] == 6) && abs(coordinates[Y_CURRENT] - coordinates[Y_TARGET]) <= 2)
+		if (((diffTargetDis > 0 && coordinates[Y_CURRENT] == 1) || (diffTargetDis < 0 && coordinates[Y_CURRENT] == 6)) && abs(coordinates[Y_CURRENT] - coordinates[Y_TARGET]) <= 2)
 		{
 			return true;
 		}

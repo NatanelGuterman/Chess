@@ -43,5 +43,5 @@ public:
 	bool isKingInCheck() const;
 
 private:
-	std::string findCoordByType(char type) const;
+	int* findCoordByType(char type) const;
 };

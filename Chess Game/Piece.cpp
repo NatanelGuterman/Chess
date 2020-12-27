@@ -27,10 +27,13 @@ char Piece::get_type()
 std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	// Code 2 in main, and part of it here.
+	std::cout << "\nBEFORE TURN " << Board::get_turn() << "\n";
 	if ((!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT]))) || // false (white's turn) and lower case type of piece (black in current coordinates).
 		 (Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // true (black's turn) and upper case type of piece (white in current coordinates).
 	{
 		std::cout << "********** code 2 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
 		return "2";
 	}
 
@@ -39,18 +42,10 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	   (!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Current & target are both white.
 	{
 		std::cout << "********** code 3 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
 		return "3";
 	}
-
-	// Code 4
-	Board::set_turn(!Board::get_turn()); // To check this player's check.
-	if (isKingInCheck())
-	{
-		Board::set_turn(!Board::get_turn());  // Set back the actual player.
-		std::cout << "********** code 4 *********\n";
-		return "4";
-	}
-	Board::set_turn(!Board::get_turn());
 
 	 // Code 5
 	if (coordinates[X_CURRENT] < MIN_BOARD_INDEX || coordinates[X_CURRENT] > MAX_BOARD_INDEX ||
@@ -59,6 +54,8 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX)
 	{
 		std::cout << "********** code 5 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
 		return "5";
 	}
 
@@ -66,6 +63,8 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	if (coordinates[X_CURRENT] == coordinates[X_TARGET] && coordinates[Y_CURRENT] == coordinates[Y_TARGET])
 	{ // Current && target coordinates are the same.
 		std::cout << "********** code 7 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
 		return "7";
 	}
 
@@ -73,8 +72,22 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	if (!isValidStep(coordinates))
 	{
 		std::cout << "********** code 6 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
 		return "6";
 	}
+
+	// Code 4
+	Board::set_turn(!Board::get_turn()); // To check this player's check.
+	if (isKingInCheck())
+	{
+		Board::set_turn(!Board::get_turn());  // Set back the actual player.
+		std::cout << "********** code 4 *********\n";
+		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+
+		return "4";
+	}
+	Board::set_turn(!Board::get_turn());
 
 	return "0"; // No issue was found.
 }
@@ -141,16 +154,16 @@ bool Piece::isKingInCheck() const
 	int coordinates[4] = { 0, 0, 0, 0 };
 	char whichKing = Board::get_turn() ? WHITE_KING : BLACK_KING; // true (black's turn) = white, false (white's turn) = black.
 	bool negativePieceColor = islower(whichKing);
-	std::string resultCoordinates = findCoordByType(whichKing);
+	int* resultCoordinates = findCoordByType(whichKing);
 	
-	coordinates[X_TARGET] = int(resultCoordinates[X_CURRENT]);
-	coordinates[Y_TARGET] = int(resultCoordinates[Y_CURRENT]);
-
+	coordinates[X_TARGET] = resultCoordinates[X_CURRENT];
+	coordinates[Y_TARGET] = resultCoordinates[Y_CURRENT];
+	resultCoordinates = nullptr;
 	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
 	{
 		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
 		{
-			if (Board::_chessBoard[i][j] != nullptr && bool(islower(Board::_chessBoard[i][j]->_type)) != negativePieceColor)
+			if (Board::_chessBoard[i][j] != nullptr && islower(Board::_chessBoard[i][j]->_type) != negativePieceColor)
 			{
 				coordinates[X_CURRENT] = i;
 				coordinates[Y_CURRENT] = j;
@@ -172,10 +185,10 @@ bool Piece::isKingInCheck() const
 		std::string coordinates --> The coordinates (x, y).
 */
 
-std::string Piece::findCoordByType(char type) const
+int* Piece::findCoordByType(char type) const
 {
 	int i = 0, j = 0;
-	std::string coordinates = "";
+	int coordinates[2] = {0, 0};
 	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
 	{
 		for (j = 0; j < HEIGHT_BOARD_BLOCKS; j++)
@@ -184,8 +197,8 @@ std::string Piece::findCoordByType(char type) const
 			{
 				if (Board::_chessBoard[i][j]->_type == type)
 				{
-					coordinates += i;
-					coordinates += j;
+					coordinates[0] = i;
+					coordinates[1] = j;
 					return coordinates;
 				}
 			}
