@@ -80,10 +80,10 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 {
 	char type = 'a';
-	int coordinates[AMOUNT_OF_COORD] = { (int(coordinatesStr[X_CURRENT]) - 1) ,
-										 (int(coordinatesStr[Y_CURRENT]) - 1) ,
-										 (int(coordinatesStr[X_TARGET]) - 1) ,
-										 (int(coordinatesStr[Y_TARGET]) - 1) };
+	int coordinates[AMOUNT_OF_COORD] = { (int(coordinatesStr[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1) ,
+										 (int(coordinatesStr[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1) ,
+										 (int(coordinatesStr[X_TARGET]) - CONVERT_CHAR_TO_NUM - 1) ,
+										 (int(coordinatesStr[Y_TARGET]) - CONVERT_CHAR_TO_NUM - 1) };
 
 	if (checkInvalidMove(coordinates) == "0")
 	{

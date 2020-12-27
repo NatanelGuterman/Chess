@@ -16,7 +16,6 @@ in order to read and write information from and to the Backend
 #include "Queen.h"
 
 
-#define CONVERT_CHAR_TO_NUM 48
 
 Piece* Board::_chessBoard[WIDTH_BOARD_BLOCKS][HEIGHT_BOARD_BLOCKS] = {};
 bool Board::_turn = false; // White's turn first.
@@ -49,7 +48,7 @@ int main()
 
 	char msgToGraphics[1024];
 	 //msgToGraphics should contain the board string accord the protocol
-	Board* gameBoard = new Board();
+	
 
 	// YOUR CODE
 
@@ -86,21 +85,39 @@ int main()
 	Board::_chessBoard[LINE_EIGHT][COL_SEVEN] = new Knight(WHITE_KNIGHT);
 	Board::_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(WHITE_ROOK);
 
+	Board* gameBoard = new Board();
+	//for (int i = 0; i < 8; i++)
+	//{
+	//	for (int j = 0; j < 8; j++)
+	//	{
+	//		if (Board::_chessBoard[i][j])
+	//		{
+	//			std::cout << gameBoard->_chessBoard[i][j]->get_type();
+	//		}
+	//		else
+	//		{
+	//			std::cout << NULL_CHAR;
+	//		}
+
+	//	}
+	//}
+	
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4 (move e2 to e4)
 		// Converting chars to numbers ("e2e2" --> "5254").
+		std::cout << msgFromGraphics << std::endl;
 		msgFromGraphics[X_CURRENT] = int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM;
 		msgFromGraphics[X_TARGET] = int(msgFromGraphics[X_TARGET]) - CONVERT_CHAR_TO_NUM;
 
-		if (gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT])][int(msgFromGraphics[Y_CURRENT])] == nullptr)
+		if (gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1] == nullptr)
 		{
 			strcpy_s(msgToGraphics, "2");
 		}
 		else
 		{
-			strcpy_s(msgToGraphics, gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT])][int(msgFromGraphics[Y_CURRENT])]->checkCodeToMove(msgFromGraphics).c_str());
+			strcpy_s(msgToGraphics, gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1]->checkCodeToMove(msgFromGraphics).c_str());
 		}
 
 		// return result to graphics		

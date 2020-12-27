@@ -43,6 +43,8 @@
 
 #define AMOUNT_OF_COORD 4
 
+#define CONVERT_CHAR_TO_NUM 48
+
 class Piece;
 class Board
 {
