@@ -27,42 +27,52 @@ char Piece::get_type()
 std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
 	// Code 2 in main, and part of it here.
-	if ((Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT]))) || // false (white's turn) and lower case type of piece (black in current coordinates).
-		 (!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // true (black's turn) and upper case type of piece (white in current coordinates).
+	if ((!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT]))) || // false (white's turn) and lower case type of piece (black in current coordinates).
+		 (Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // true (black's turn) and upper case type of piece (white in current coordinates).
 	{
+		std::cout << "********** code 2 *********\n";
 		return "2";
 	}
+
 	// Code 3
 	if ((Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]))) || // Current & target are both black.
 	   (!Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // Current & target are both white.
 	{
+		std::cout << "********** code 3 *********\n";
 		return "3";
 	}
+
 	// Code 4
-	/***********************************************************************************************/
 	Board::set_turn(!Board::get_turn()); // To check this player's check.
 	if (isKingInCheck())
 	{
 		Board::set_turn(!Board::get_turn());  // Set back the actual player.
+		std::cout << "********** code 4 *********\n";
 		return "4";
 	}
-	/***********************************ADD שח FUNCTION*********************************************/
+	Board::set_turn(!Board::get_turn());
+
 	 // Code 5
 	if (coordinates[X_CURRENT] < MIN_BOARD_INDEX || coordinates[X_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[Y_CURRENT] < MIN_BOARD_INDEX || coordinates[Y_CURRENT] > MAX_BOARD_INDEX ||
 			 coordinates[X_TARGET] < MIN_BOARD_INDEX || coordinates[X_TARGET] > MAX_BOARD_INDEX ||
 			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX)
 	{
+		std::cout << "********** code 5 *********\n";
 		return "5";
 	}
+
 	// Code 7
 	if (coordinates[X_CURRENT] == coordinates[X_TARGET] && coordinates[Y_CURRENT] == coordinates[Y_TARGET])
 	{ // Current && target coordinates are the same.
+		std::cout << "********** code 7 *********\n";
 		return "7";
 	}
+
 	// Code 6
 	if (!isValidStep(coordinates))
 	{
+		std::cout << "********** code 6 *********\n";
 		return "6";
 	}
 
@@ -80,12 +90,20 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 {
 	char type = 'a';
+	std::string code = "";
 	int coordinates[AMOUNT_OF_COORD] = { (int(coordinatesStr[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1) ,
 										 (int(coordinatesStr[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1) ,
 										 (int(coordinatesStr[X_TARGET]) - CONVERT_CHAR_TO_NUM - 1) ,
 										 (int(coordinatesStr[Y_TARGET]) - CONVERT_CHAR_TO_NUM - 1) };
+	std::cout << "df\n";
+	for (int i = 0; i < 4; i++)
+	{
+		std::cout << coordinates[i];
+	}
+	std::cout << "\n";
 
-	if (checkInvalidMove(coordinates) == "0")
+	code = checkInvalidMove(coordinates);
+	if (code == "0")
 	{
 		type = Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET]);
 		// Code 8
@@ -99,6 +117,10 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 			return "1";
 		}
 		Board::moveTo(coordinates);
+	}
+	else
+	{
+		return code;
 	}
 	return "0";
 }

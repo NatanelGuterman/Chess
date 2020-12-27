@@ -34,10 +34,6 @@
 
 #define COL_ONE 0
 #define COL_TWO 1
-#define COL_THREE 2
-#define COL_FOUR 3
-#define COL_FIVE 4
-#define COL_SIX 5
 #define COL_SEVEN 6
 #define COL_EIGHT 7
 

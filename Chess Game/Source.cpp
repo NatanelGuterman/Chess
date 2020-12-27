@@ -58,68 +58,88 @@ int main()
 	// get message from graphics
 	std::string msgFromGraphics = p.getMessageFromGraphics();
 
-	Board::_chessBoard[LINE_ONE][COL_ONE] = new Rook(BLACK_ROOK);
-	Board::_chessBoard[LINE_ONE][COL_TWO] = new Knight(BLACK_KNIGHT);
-	Board::_chessBoard[LINE_ONE][COL_THREE] = new Bishop(BLACK_BISHOP);
-	Board::_chessBoard[LINE_ONE][COL_FOUR] = new Queen(BLACK_QUEEN);
-	Board::_chessBoard[LINE_ONE][COL_FIVE] = new King(BLACK_KING);
-	Board::_chessBoard[LINE_ONE][COL_SIX] = new Bishop(BLACK_BISHOP);
-	Board::_chessBoard[LINE_ONE][COL_SEVEN] = new Knight(BLACK_KNIGHT);
 	Board::_chessBoard[LINE_ONE][COL_EIGHT] = new Rook(BLACK_ROOK);
+	Board::_chessBoard[LINE_TWO][COL_EIGHT] = new Knight(BLACK_KNIGHT);
+	Board::_chessBoard[LINE_THREE][COL_EIGHT] = new Bishop(BLACK_BISHOP);
+	Board::_chessBoard[LINE_FOUR][COL_EIGHT] = new Queen(BLACK_QUEEN);
+	Board::_chessBoard[LINE_FIVE][COL_EIGHT] = new King(BLACK_KING);
+	Board::_chessBoard[LINE_SIX][COL_EIGHT] = new Bishop(BLACK_BISHOP);
+	Board::_chessBoard[LINE_SEVEN][COL_EIGHT] = new Knight(BLACK_KNIGHT);
+	Board::_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(BLACK_ROOK);
 
 	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
 	{
-		Board::_chessBoard[LINE_TWO][i] = new Pawn(BLACK_PAWN);
+		Board::_chessBoard[i][COL_SEVEN] = new Pawn(BLACK_PAWN);
 	}
 	for (i = 0; i < WIDTH_BOARD_BLOCKS; i++)
 	{
-		Board::_chessBoard[LINE_SEVEN][i] = new Pawn(WHITE_PAWN);
+		Board::_chessBoard[i][COL_TWO] = new Pawn(WHITE_PAWN);
 	}
 
+	Board::_chessBoard[LINE_ONE][COL_ONE] = new Rook(WHITE_ROOK);
+	Board::_chessBoard[LINE_TWO][COL_ONE] = new Knight(WHITE_KNIGHT);
+	Board::_chessBoard[LINE_THREE][COL_ONE] = new Bishop(WHITE_BISHOP);
+	Board::_chessBoard[LINE_FOUR][COL_ONE] = new Queen(WHITE_QUEEN);
+	Board::_chessBoard[LINE_FIVE][COL_ONE] = new King(WHITE_KING);
+	Board::_chessBoard[LINE_SIX][COL_ONE] = new Bishop(WHITE_BISHOP);
+	Board::_chessBoard[LINE_SEVEN][COL_ONE] = new Knight(WHITE_KNIGHT);
 	Board::_chessBoard[LINE_EIGHT][COL_ONE] = new Rook(WHITE_ROOK);
-	Board::_chessBoard[LINE_EIGHT][COL_TWO] = new Knight(WHITE_KNIGHT);
-	Board::_chessBoard[LINE_EIGHT][COL_THREE] = new Bishop(WHITE_BISHOP);
-	Board::_chessBoard[LINE_EIGHT][COL_FOUR] = new Queen(WHITE_QUEEN);
-	Board::_chessBoard[LINE_EIGHT][COL_FIVE] = new King(WHITE_KING);
-	Board::_chessBoard[LINE_EIGHT][COL_SIX] = new Bishop(WHITE_BISHOP);
-	Board::_chessBoard[LINE_EIGHT][COL_SEVEN] = new Knight(WHITE_KNIGHT);
-	Board::_chessBoard[LINE_EIGHT][COL_EIGHT] = new Rook(WHITE_ROOK);
 
 	Board* gameBoard = new Board();
-	//for (int i = 0; i < 8; i++)
-	//{
-	//	for (int j = 0; j < 8; j++)
-	//	{
-	//		if (Board::_chessBoard[i][j])
-	//		{
-	//			std::cout << gameBoard->_chessBoard[i][j]->get_type();
-	//		}
-	//		else
-	//		{
-	//			std::cout << NULL_CHAR;
-	//		}
+	std::cout << "********************Board****************************\n";
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			if (Board::_chessBoard[i][j])
+			{
+				std::cout << gameBoard->_chessBoard[i][j]->get_type();
+			}
+			else
+			{
+				std::cout << NULL_CHAR;
+			}
 
-	//	}
-	//}
+		}
+		std::cout << "\n";
+	}
+	std::cout << "**************************************\n";
 	
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4 (move e2 to e4)
 		// Converting chars to numbers ("e2e2" --> "5254").
-		std::cout << msgFromGraphics << std::endl;
 		msgFromGraphics[X_CURRENT] = int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM;
 		msgFromGraphics[X_TARGET] = int(msgFromGraphics[X_TARGET]) - CONVERT_CHAR_TO_NUM;
 
 		if (gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1] == nullptr)
 		{
 			strcpy_s(msgToGraphics, "2");
+			std::cout << "\nAnotherOne\n";
 		}
 		else
 		{
 			strcpy_s(msgToGraphics, gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1]->checkCodeToMove(msgFromGraphics).c_str());
 		}
+		std::cout << "********************Board****************************\n";
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (Board::_chessBoard[i][j])
+				{
+					std::cout << gameBoard->_chessBoard[i][j]->get_type();
+				}
+				else
+				{
+					std::cout << NULL_CHAR;
+				}
 
+			}
+			std::cout << "\n";
+		}
+		std::cout << "**************************************\n";
 		// return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);   
 
