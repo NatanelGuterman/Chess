@@ -29,7 +29,7 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	// Code 2 in main, and part of it here.
 	std::cout << "\nBEFORE TURN " << Board::get_turn() << "\n";
 	if ((!Board::get_turn() && islower(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT]))) || // false (white's turn) and lower case type of piece (black in current coordinates).
-		 (Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_TARGET], coordinates[Y_TARGET])))) // true (black's turn) and upper case type of piece (white in current coordinates).
+		 (Board::get_turn() && isupper(Board::getTypeByCoord(coordinates[X_CURRENT], coordinates[Y_CURRENT])))) // true (black's turn) and upper case type of piece (white in current coordinates).
 	{
 		std::cout << "********** code 2 *********\n";
 		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
@@ -54,7 +54,7 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 			 coordinates[Y_TARGET] < MIN_BOARD_INDEX || coordinates[Y_TARGET] > MAX_BOARD_INDEX)
 	{
 		std::cout << "********** code 5 *********\n";
-		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+		std::cout << "AFTER TURN " << Board::get_turn() << "\n";
 
 		return "5";
 	}
@@ -63,7 +63,7 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	if (coordinates[X_CURRENT] == coordinates[X_TARGET] && coordinates[Y_CURRENT] == coordinates[Y_TARGET])
 	{ // Current && target coordinates are the same.
 		std::cout << "********** code 7 *********\n";
-		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+		std::cout << "AFTER TURN " << Board::get_turn() << "\n";
 
 		return "7";
 	}
@@ -72,22 +72,22 @@ std::string Piece::checkInvalidMove(int(&coordinates)[AMOUNT_OF_COORD]) const
 	if (!isValidStep(coordinates))
 	{
 		std::cout << "********** code 6 *********\n";
-		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+		std::cout << "AFTER TURN " << Board::get_turn() << "\n";
 
 		return "6";
 	}
 
-	// Code 4
-	Board::set_turn(!Board::get_turn()); // To check this player's check.
-	if (isKingInCheck())
-	{
-		Board::set_turn(!Board::get_turn());  // Set back the actual player.
-		std::cout << "********** code 4 *********\n";
-		std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
+	////// Code 4
+	//Board::set_turn(!Board::get_turn()); // To check this player's check.
+	//if (isKingInCheck())
+	//{
+	//	Board::set_turn(!Board::get_turn());  // Set back the actual player.
+	//	std::cout << "********** code 4 *********\n";
+	//	std::cout << "\AFTER TURN " << Board::get_turn() << "\n";
 
-		return "4";
-	}
-	Board::set_turn(!Board::get_turn());
+	//	return "4";
+	//}
+	//Board::set_turn(!Board::get_turn());
 
 	return "0"; // No issue was found.
 }
@@ -124,7 +124,7 @@ std::string Piece::checkCodeToMove(std::string &coordinatesStr) const
 		{
 			return "8";
 		}
-		// Code 1
+		 //Code 1
 		else if (isKingInCheck())
 		{
 			return "1";
