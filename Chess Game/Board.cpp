@@ -33,10 +33,11 @@ Board::~Board()
 
 char Board::getTypeByCoord(int x, int y)
 {
-	if (Board::_chessBoard[x][y])
+	if (Board::_chessBoard[x][y] != nullptr)
 	{
 		return Board::_chessBoard[x][y]->get_type();
 	}
+
 	return NULL_CHAR;
 }
 
@@ -53,7 +54,6 @@ void Board::moveTo(int(&coordinates)[AMOUNT_OF_COORD])
 	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = nullptr;
 	Board::_chessBoard[coordinates[X_TARGET]][coordinates[Y_TARGET]] = Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]];
 	Board::_chessBoard[coordinates[X_CURRENT]][coordinates[Y_CURRENT]] = nullptr;
-    Board::_turn = !Board::_turn;
 }
 
 // Getters

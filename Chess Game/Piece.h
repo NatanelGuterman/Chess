@@ -44,4 +44,7 @@ public:
 
 private:
 	int* findCoordByType(char type) const;
+
+	//Helper Method
+	void swapTargetToCurrent(int(&coordinates)[AMOUNT_OF_COORD]) const;
 };

@@ -32,7 +32,6 @@ bool Queen::isValidStep(int(&coordinates)[AMOUNT_OF_COORD]) const
 bool Queen::validRook(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
     int changedCoord = 0, lastCoordToCheck = 0;
-    std::cout << "\nROOK\n";
     if (coordinates[X_CURRENT] != coordinates[X_TARGET] && coordinates[Y_CURRENT] != coordinates[Y_TARGET])
     {
         return false;
@@ -85,12 +84,11 @@ bool Queen::validRook(int(&coordinates)[AMOUNT_OF_COORD]) const
 bool Queen::validBishop(int(&coordinates)[AMOUNT_OF_COORD]) const
 {
     int x = 0, y = 0, lastCoordToCheck = coordinates[X_TARGET], xFactor = 0, yFactor = 0;
-    std::cout << "\BISHOP\n";
     if (abs(coordinates[X_CURRENT] - coordinates[X_TARGET]) != abs(coordinates[Y_CURRENT] - coordinates[Y_TARGET]))
     {
+
         return false;
     }
-
     if (coordinates[Y_CURRENT] < coordinates[Y_TARGET]) // move right
     {
         if (coordinates[X_CURRENT] < coordinates[X_TARGET]) // up right direction

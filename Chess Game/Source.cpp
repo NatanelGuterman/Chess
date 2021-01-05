@@ -52,7 +52,7 @@ int main()
 
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR0"); // just example...
+	strcpy_s(msgToGraphics, "rnbqkbnrpppppppp################################PPPPPPPPRNBQKBNR0"); // just example...
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
@@ -86,24 +86,6 @@ int main()
 	Board::_chessBoard[LINE_EIGHT][COL_ONE] = new Rook(WHITE_ROOK);
 
 	Board* gameBoard = new Board();
-	std::cout << "********************Board****************************\n";
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 8; j++)
-		{
-			if (Board::_chessBoard[i][j])
-			{
-				std::cout << gameBoard->_chessBoard[i][j]->get_type();
-			}
-			else
-			{
-				std::cout << NULL_CHAR;
-			}
-
-		}
-		std::cout << "\n";
-	}
-	std::cout << "**************************************\n";
 	
 	while (msgFromGraphics != "quit")
 	{
@@ -115,31 +97,13 @@ int main()
 
 		if (gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1] == nullptr)
 		{
-			strcpy_s(msgToGraphics, "2");
-			std::cout << "\nAnotherOne\n";
+			strcpy_s(msgToGraphics, CODE_2);
 		}
 		else
 		{
 			strcpy_s(msgToGraphics, gameBoard->_chessBoard[int(msgFromGraphics[X_CURRENT]) - CONVERT_CHAR_TO_NUM - 1][int(msgFromGraphics[Y_CURRENT]) - CONVERT_CHAR_TO_NUM - 1]->checkCodeToMove(msgFromGraphics).c_str());
 		}
-		std::cout << "********************Board****************************\n";
-		for (int i = 0; i < 8; i++)
-		{
-			for (int j = 0; j < 8; j++)
-			{
-				if (Board::_chessBoard[i][j])
-				{
-					std::cout << gameBoard->_chessBoard[i][j]->get_type();
-				}
-				else
-				{
-					std::cout << NULL_CHAR;
-				}
 
-			}
-			std::cout << "\n";
-		}
-		std::cout << "**************************************\n";
 		// return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);   
 

@@ -21,8 +21,6 @@
 
 #define NULL_CHAR '#'
 
-//change to enum! ##########################################################
-
 #define LINE_ONE 0
 #define LINE_TWO 1
 #define LINE_THREE 2
@@ -40,6 +38,16 @@
 #define AMOUNT_OF_COORD 4
 
 #define CONVERT_CHAR_TO_NUM 48
+
+#define CODE_1 "1"
+#define CODE_2 "2"
+#define CODE_3 "3"
+#define CODE_4 "4"
+#define CODE_5 "5"
+#define CODE_6 "6"
+#define CODE_7 "7"
+#define CODE_8 "8"
+#define CODE_0 "0"
 
 class Piece;
 class Board
